@@ -10,7 +10,8 @@ const sleep = (delay: number) => {
 }
 
 const agent = axios.create({
-     baseURL: import.meta.env.VITE_API_URL 
+     baseURL: import.meta.env.VITE_API_URL ,
+     withCredentials : true
 })
 
 agent.interceptors.request.use(config => {
@@ -21,16 +22,20 @@ agent.interceptors.request.use(config => {
 
 
 agent.interceptors.response.use(
-    async response => {
+    async (response ) => {
         await sleep(1000);
         store.uiStore.isIdle();
         return response;
     },
-        async error => {
+        async (error ) => {
             await sleep(1000);
             store.uiStore.isIdle();
-
-            const {data, status} =error.response;
+          if (!error.response) {
+    //   // No response from server (network/CORS/timeout)
+    //   toast.error("No response from server. Please try again.");
+    //   return Promise.reject(error);
+    }
+            const {data, status} = error.response;
             switch (status){
                 case 400:
                     if (data.errors){

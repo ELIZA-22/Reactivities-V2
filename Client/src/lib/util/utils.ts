@@ -1,6 +1,8 @@
 import { format, isValid } from "date-fns";
 import z from "zod";
-export function formatDate(date: Date | string | number | null | undefined): string {
+export function formatDate(
+  date: Date | string | number | null | undefined
+): string {
   const parsed =
     typeof date === "string" || typeof date === "number"
       ? new Date(date)
@@ -10,10 +12,10 @@ export function formatDate(date: Date | string | number | null | undefined): str
   }
   return format(parsed, "dd MMM yyyy h:mm a");
 }
-export const requiredString = (fieldName: string) =>
-  z.string().min(2, { message: `${fieldName} is required` });
+// export const requiredString = (fieldName: string) => z
+// .string().min(2, { message: `${fieldName} is required` });
 
-// import { format } from "date-fns";
-// export function formatDate(date: Date) {
-//   return format(date, "dd MMM yyyy h:mm a");
-// }
+export const requiredString = (fieldName: string) =>
+  z
+    .string({ required_error: `${fieldName} is required` })
+    .min(1, { message: `${fieldName} is required` });
