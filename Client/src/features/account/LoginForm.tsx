@@ -13,8 +13,8 @@ export default function LoginForm() {
   const location = useLocation();
   const {
     control,
-    handleSubmit,
-    formState: { isValid, isSubmitting },
+    handleSubmit,    
+    formState: { isValid, isSubmitting , errors},
   } = useForm<LoginSchema>({
     mode: "onTouched",
     resolver: zodResolver(loginSchema),
@@ -53,6 +53,8 @@ export default function LoginForm() {
         control={control}
         name="password"
       />
+       {errors.email &&  <p> {errors.email.message}
+        </p>}
       <Button
         type="submit"
         disabled={!isValid || isSubmitting}
