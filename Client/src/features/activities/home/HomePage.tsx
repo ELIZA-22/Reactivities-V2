@@ -1,6 +1,5 @@
 import { Group } from '@mui/icons-material'
 import { Box, Button, Paper, Typography } from '@mui/material'
-import React from 'react'
 import { Link } from 'react-router'
 
 export default function HomePage() {

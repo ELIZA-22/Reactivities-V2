@@ -51,7 +51,7 @@ builder.Services.AddIdentityApiEndpoints<User>(opt =>
 
 builder.Services.AddAuthorization(opt =>
 {
-    opt.AddPolicy("IsActivityHost", policy => 
+    opt.AddPolicy("IsActivityHost", policy =>  
     {
         policy.Requirements.Add(new IsHostRequirement());
     });
@@ -66,6 +66,9 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000" ,"https://localhost:3000" ));
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.MapControllers();
 app.MapHub<CommentHub>("/comments");
 app.MapGroup("api").MapIdentityApi<User>();

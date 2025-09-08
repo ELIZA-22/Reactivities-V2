@@ -65,8 +65,8 @@ export default function ProfileActivities() {
                                         display='flex'
                                         flexDirection='column'
                                     >
-                                        <span>{format(activity.date, 'do LLL yyyy')}</span>
-                                        <span>{format(activity.date, 'h:mm a')}</span>
+                                        <span>{format(new Date(activity.date), 'do LLL yyyy')}</span>
+                                        <span>{format(new Date(activity.date), 'h:mm a')}</span>
                                     </Typography>
                                 </CardContent>
                             </Card>

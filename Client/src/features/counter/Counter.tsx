@@ -1,4 +1,3 @@
-import React from "react";
 import { useStore } from "../../lib/hooks/useStore";
 import { observer } from "mobx-react-lite";
 import { Box, Button, ButtonGroup, List, ListItemText, Paper, Typography } from "@mui/material";
