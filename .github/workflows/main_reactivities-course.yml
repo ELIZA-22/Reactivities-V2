@@ -50,13 +50,6 @@ jobs:
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
-<<<<<<< HEAD
-=======
-    environment:
-     name: production
-     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
->>>>>>> e51fd103ed8ba2727d38e1db2f5316bf957620b4
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -79,4 +72,5 @@ jobs:
           package: .
 
           
+
 
